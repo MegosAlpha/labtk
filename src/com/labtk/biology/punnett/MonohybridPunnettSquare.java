@@ -15,6 +15,16 @@ import org.apache.commons.lang3.ArrayUtils;
  */
 public class MonohybridPunnettSquare {
     Scanner scanner = new Scanner(System.in);
+    public void CreateTableTop(Character[] p1g) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(" |");
+        sb.append(p1g[0]);
+        sb.append(" |");
+        sb.append(p1g[1]);
+        sb.append(" |");
+        System.out.println(sb.toString());
+        System.out.print("--------");
+    }
     public void GetPunnettSquare() {
         //Get parental data
         System.out.print("Parent 1: ");
@@ -33,19 +43,31 @@ public class MonohybridPunnettSquare {
                 offspring.add(geneArray);
             }
         }
+        //Build the tabletop
+        CreateTableTop(p2);
+        //Prepare StringBuilder and Iterator
+        StringBuilder sb = new StringBuilder();
+        int myIter = 0;
         //Output Offspring
-        offspring.forEach((Character[] child) -> {
-            StringBuilder sb = new StringBuilder();
+        for (Character[] child : offspring) {
+            if (myIter % 2 == 0) {
+                System.out.println(sb.toString());
+                sb = new StringBuilder();
+                sb.append(p1[myIter/2]);
+                sb.append('|');
+            }
             if (!Character.isUpperCase(child[0]) && Character.isUpperCase(child[1])) {
                 sb.append(child[1]);
                 sb.append(child[0]);
-                System.out.println(sb.toString());
             } else {
                 sb.append(child[0]);
                 sb.append(child[1]);
-                System.out.println(sb.toString());
             }
-        });
+            sb.append('|');
+            myIter++;
+        }
+        //Get any leftover out
+        System.out.println(sb.toString());
         //Clean-up and close scanner
         scanner.close();
     }
