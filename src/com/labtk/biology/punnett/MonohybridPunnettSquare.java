@@ -7,6 +7,7 @@ package com.labtk.biology.punnett;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import org.apache.commons.lang3.ArrayUtils;
 
 /**
  *
@@ -19,8 +20,8 @@ public class MonohybridPunnettSquare {
         String p1_string = scanner.next();
         System.out.print("Parent 2: ");
         String p2_string = scanner.next();
-        Character[] p1 = {'A', 'a'};
-        Character[] p2 = {'A', 'a'};
+        Character[] p1 = ArrayUtils.toObject(p1_string.toCharArray());
+        Character[] p2 = ArrayUtils.toObject(p2_string.toCharArray());
         ArrayList<Character[]> offspring = new ArrayList<>();
         for (Character allele : p1) {
             for (Character allele2 : p2) {
@@ -28,17 +29,16 @@ public class MonohybridPunnettSquare {
                 offspring.add(geneArray);
             }
         }
-        offspring.forEach((child) -> {
-            int allele_num = 0;
-            for (Character allele : child){
-                if (allele_num == 1) {
-                    System.out.println(allele);
-                    allele_num = 0;
-                }
-                else if (allele_num == 0){
-                    System.out.print(allele);
-                    allele_num = 1;
-                }
+        offspring.forEach((Character[] child) -> {
+            StringBuilder sb = new StringBuilder();
+            if (!Character.isUpperCase(child[0]) && Character.isUpperCase(child[1])) {
+                sb.append(child[1]);
+                sb.append(child[0]);
+                System.out.println(sb.toString());
+            } else {
+                sb.append(child[0]);
+                sb.append(child[1]);
+                System.out.println(sb.toString());
             }
         });
     }
