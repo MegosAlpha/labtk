@@ -39,6 +39,23 @@ public class DihybridPunnettSquare {
             }
         };
     }
+    public void CreateTableTop(Character[][] p2g) {
+        //Set up StringBuilder
+        StringBuilder sb = new StringBuilder();
+        sb.append("  ");
+        sb.append('|');
+        //Start up tabletop creation
+        for (Character[] g : p2g) {
+            sb.append(' ');
+            sb.append(g[0]);
+            sb.append(g[1]);
+            sb.append(' ');
+            sb.append('|');
+        }
+        //Print out first row and hyphen seperator
+        System.out.println(sb.toString());
+        System.out.print("-----------------------");
+    }
     public void GetPunnettSquare() {
         try (Scanner scanner = new Scanner(System.in)) {
             //Get parental data
@@ -67,9 +84,19 @@ public class DihybridPunnettSquare {
                     });
                 }
             }
-            //Output Offspring (Row-by-Row)
-            offspring.forEach((Character[][] child) -> {
-                StringBuilder sb = new StringBuilder();
+            //Make that tabletop!
+            CreateTableTop(p2g);
+            //Output Offspring (Row-by-Row). Now with row headers!
+            int myIter = 0;
+            StringBuilder sb = new StringBuilder();
+            for (Character[][] child : offspring) {
+                if (myIter % 4 == 0) {
+                    System.out.println(sb.toString());
+                    sb = new StringBuilder();
+                    sb.append(p1g[myIter / 4][0]);
+                    sb.append(p1g[myIter / 4][1]);
+                    sb.append('|');
+                }
                 if (!Character.isUpperCase(child[0][0]) && Character.isUpperCase(child[0][1])) {
                     sb.append(child[0][1]);
                     sb.append(child[0][0]);
@@ -84,8 +111,11 @@ public class DihybridPunnettSquare {
                     sb.append(child[1][0]);
                     sb.append(child[1][1]);
                 }
-                System.out.println(sb.toString());
-            });
+                sb.append('|');
+                myIter++;
+            }
+            //Last check!
+            System.out.println(sb.toString());
             //Clean-up and close the scanner.
             scanner.close();
         }
