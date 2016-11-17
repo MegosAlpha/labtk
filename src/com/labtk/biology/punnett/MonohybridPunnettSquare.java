@@ -15,21 +15,25 @@ import org.apache.commons.lang3.ArrayUtils;
  */
 public class MonohybridPunnettSquare {
     Scanner scanner = new Scanner(System.in);
-    public void GetData() {
+    public void GetPunnettSquare() {
+        //Get parental data
         System.out.print("Parent 1: ");
         String p1_string = scanner.next();
         System.out.print("Parent 2: ");
         String p2_string = scanner.next();
+        //Determine Gametes
         Character[] p1 = ArrayUtils.toObject(p1_string.toCharArray());
         Character[] p2 = ArrayUtils.toObject(p2_string.toCharArray());
+        //Set up offspring
         ArrayList<Character[]> offspring = new ArrayList<>();
+        //Perform genetic cross
         for (Character allele : p1) {
             for (Character allele2 : p2) {
                 Character[] geneArray = {allele, allele2};
                 offspring.add(geneArray);
             }
         }
-        
+        //Output Offspring
         offspring.forEach((Character[] child) -> {
             StringBuilder sb = new StringBuilder();
             if (!Character.isUpperCase(child[0]) && Character.isUpperCase(child[1])) {
@@ -42,6 +46,7 @@ public class MonohybridPunnettSquare {
                 System.out.println(sb.toString());
             }
         });
+        //Clean-up and close scanner
         scanner.close();
     }
 }

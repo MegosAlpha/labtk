@@ -41,6 +41,7 @@ public class DihybridPunnettSquare {
     }
     public void GetPunnettSquare() {
         try (Scanner scanner = new Scanner(System.in)) {
+            //Get parental data
             System.out.print("Parent 1: ");
             String p1_string = scanner.next();
             System.out.print("Parent 2: ");
@@ -66,6 +67,7 @@ public class DihybridPunnettSquare {
                     });
                 }
             }
+            //Output Offspring (Row-by-Row)
             offspring.forEach((Character[][] child) -> {
                 StringBuilder sb = new StringBuilder();
                 if (!Character.isUpperCase(child[0][0]) && Character.isUpperCase(child[0][1])) {
@@ -84,6 +86,7 @@ public class DihybridPunnettSquare {
                 }
                 System.out.println(sb.toString());
             });
+            //Clean-up and close the scanner.
             scanner.close();
         }
     }
