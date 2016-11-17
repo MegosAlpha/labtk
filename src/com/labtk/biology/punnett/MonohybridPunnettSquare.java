@@ -29,6 +29,7 @@ public class MonohybridPunnettSquare {
                 offspring.add(geneArray);
             }
         }
+        
         offspring.forEach((Character[] child) -> {
             StringBuilder sb = new StringBuilder();
             if (!Character.isUpperCase(child[0]) && Character.isUpperCase(child[1])) {
@@ -41,5 +42,6 @@ public class MonohybridPunnettSquare {
                 System.out.println(sb.toString());
             }
         });
+        scanner.close();
     }
 }

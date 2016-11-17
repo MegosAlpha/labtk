@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.labtk.labtk;
-import com.labtk.biology.punnett.MonohybridPunnettSquare;
+import com.labtk.biology.punnett.DihybridPunnettSquare;
 /**
  *
  * @author noah
@@ -17,8 +17,8 @@ public class Main {
     public static void main(String[] args) {
         // Set up labtk base
         System.out.println("labtk - Lab-Based Science Toolkit");
-        MonohybridPunnettSquare mps = new MonohybridPunnettSquare();
-        mps.GetData();
+        DihybridPunnettSquare dps = new DihybridPunnettSquare();
+        dps.GetPunnettSquare();
     }
     
 }
