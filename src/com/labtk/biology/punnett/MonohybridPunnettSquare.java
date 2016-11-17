@@ -31,6 +31,15 @@ public class MonohybridPunnettSquare {
         String p1_string = scanner.next();
         System.out.print("Parent 2: ");
         String p2_string = scanner.next();
+        //Check parental data for violations
+        if (p1_string.length() != 2) {
+            System.out.println("Invalid Length on Parent 1!");
+            return;
+        }
+        if (p2_string.length() != 2) {
+            System.out.println("Invalid Length on Parent 2!");
+            return;
+        }
         //Determine Gametes
         Character[] p1 = ArrayUtils.toObject(p1_string.toCharArray());
         Character[] p2 = ArrayUtils.toObject(p2_string.toCharArray());
