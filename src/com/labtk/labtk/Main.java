@@ -21,6 +21,10 @@ public class Main {
     static String getNextInput() {
         if (cArgs.length == 0) {
             return scanner.next();
+        } else if (cArgs[0].equals("--help") || cArgs[0].equals("-h")) {
+            System.out.println("--<flag> = Represents decision tree. --b would choose biology, then switch over to interactive mode");
+            Runtime.getRuntime().exit(0);
+            return "";
         } else {
             if (cArgs[0].length() - 2 > inputIter) {
                 //Increment Early (why there are protectors down there)
@@ -29,6 +33,25 @@ public class Main {
                 System.out.println(new Character(cArgs[0].toUpperCase().toCharArray()[inputIter+1]).toString());
                 //Nasty code processing unit
                 return new Character(cArgs[0].toUpperCase().toCharArray()[inputIter+1]).toString();
+            } else {
+                return scanner.next();
+            }   
+        }
+    }
+    //Pass multichar if you want to consume the rest of the input.
+    static String getNextInput(Boolean multichar) {
+        if (cArgs.length == 0) {
+            return scanner.next();
+        } else if (cArgs[0].equals("--help") || cArgs[0].equals("-h")) {
+            System.out.println("--<flag> = Represents decision tree. --b would choose biology, then switch over to interactive mode");
+            Runtime.getRuntime().exit(0);
+            return "";
+        } else {
+            if (cArgs[0].length() - 2 > inputIter) {
+                //Make sure user can see flag input
+                System.out.println(cArgs[0].substring(inputIter+2));
+                //Nasty code processing unit
+                return cArgs[0].substring(inputIter+2);
             } else {
                 return scanner.next();
             }   
@@ -61,12 +84,12 @@ public class Main {
                     if (dnaPick.equals("R")) {
                         NucleicAcids nca = new NucleicAcids();
                         System.out.print("Enter your genetic code: ");
-                        String mygc = getNextInput();
+                        String mygc = getNextInput(true);
                         System.out.println(nca.FindComplement(mygc, false));
                     } else {
                         NucleicAcids nca = new NucleicAcids();
                         System.out.print("Enter your genetic code: ");
-                        String mygc = getNextInput();
+                        String mygc = getNextInput(true);
                         System.out.println(nca.FindComplement(mygc));
                     }
                 } else if (bioResp.equals("P")) {
@@ -75,17 +98,17 @@ public class Main {
                         MonohybridPunnettSquare mps = new MonohybridPunnettSquare();
                         //Get parental data
                         System.out.print("Parent 1: ");
-                        String p1_string = getNextInput();
+                        String p1_string = getNextInput(true);
                         System.out.print("Parent 2: ");
-                        String p2_string = getNextInput();
+                        String p2_string = getNextInput(true);
                         System.out.println(mps.GetPunnettSquare(p1_string, p2_string));
                     } else {
                         DihybridPunnettSquare dps = new DihybridPunnettSquare();
                         //Get parental data
                         System.out.print("Parent 1: ");
-                        String p1_string = getNextInput();
+                        String p1_string = getNextInput(true);
                         System.out.print("Parent 2: ");
-                        String p2_string = getNextInput();
+                        String p2_string = getNextInput(true);
                         System.out.println(dps.GetPunnettSquare(p1_string, p2_string));
                     }
                 }
