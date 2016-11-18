@@ -59,11 +59,9 @@ public class DihybridPunnettSquare {
     public String GetPunnettSquare(String p1_string, String p2_string) {
         //Check parent's genotypes for proper length
         if (p1_string.length() != 4) {
-            System.out.println("Invalid Length on Parent 1!");
             return "Invalid Length on Parent 1!";
         }
         if (p2_string.length() != 4) {
-            System.out.println("Invalid Length on Parent 2!");
             return "Invalid Length on Parent 2!";
         }
         //Create the proper genetic format
