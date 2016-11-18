@@ -5,7 +5,6 @@
  */
 package com.labtk.biology.punnett;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -14,33 +13,24 @@ import org.apache.commons.lang3.ArrayUtils;
  * @author noah
  */
 public class MonohybridPunnettSquare {
-    Scanner scanner = new Scanner(System.in);
-    public void CreateTableTop(Character[] p1g) {
+    public String CreateTableTop(Character[] p1g) {
         StringBuilder sb = new StringBuilder();
         sb.append(" |");
         sb.append(p1g[0]);
         sb.append(" |");
         sb.append(p1g[1]);
-        sb.append(" |");
-        System.out.println(sb.toString());
-        System.out.print("--------");
+        sb.append(" |\n--------");
+        return sb.toString();
     }
-    public void GetPunnettSquare() {
-        //Make sure the user knows what is running
-        System.out.println("Monohybrid Punnett Square Creator");
-        //Get parental data
-        System.out.print("Parent 1: ");
-        String p1_string = scanner.next();
-        System.out.print("Parent 2: ");
-        String p2_string = scanner.next();
+    public String GetPunnettSquare(String p1_string, String p2_string) {
         //Check parental data for violations
         if (p1_string.length() != 2) {
             System.out.println("Invalid Length on Parent 1!");
-            return;
+            return "Invalid Length on Parent 1!";
         }
         if (p2_string.length() != 2) {
             System.out.println("Invalid Length on Parent 2!");
-            return;
+            return "Invalid Length on Parent 2!";
         }
         //Determine Gametes
         Character[] p1 = ArrayUtils.toObject(p1_string.toCharArray());
@@ -54,16 +44,16 @@ public class MonohybridPunnettSquare {
                 offspring.add(geneArray);
             }
         }
-        //Build the tabletop
-        CreateTableTop(p2);
         //Prepare StringBuilder and Iterator
         StringBuilder sb = new StringBuilder();
         int myIter = 0;
+        //Build the tabletop
+        String tt = CreateTableTop(p2);
+        sb.append(tt);
         //Output Offspring
         for (Character[] child : offspring) {
             if (myIter % 2 == 0) {
-                System.out.println(sb.toString());
-                sb = new StringBuilder();
+                sb.append('\n');
                 sb.append(p1[myIter/2]);
                 sb.append('|');
             }
@@ -78,8 +68,6 @@ public class MonohybridPunnettSquare {
             myIter++;
         }
         //Get any leftover out
-        System.out.println(sb.toString());
-        //Clean-up and close scanner
-        scanner.close();
+        return sb.toString();
     }
 }
