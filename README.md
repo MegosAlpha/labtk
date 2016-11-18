@@ -2,10 +2,10 @@
 Toolkit for Lab-based High School Science Courses
 
 ## Installation
-Release builds coming soon!
-When ready, run:
+Release builds now available! Download it now!
+Just run:
 ```bash
-java -jar labtk_<version>.jar
+java -jar labtk-<version>.jar
 ```
 And you're done! Just run it every time you want labtk.
 
