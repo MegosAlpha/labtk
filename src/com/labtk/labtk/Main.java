@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.labtk.labtk;
+
 import com.labtk.biology.punnett.DihybridPunnettSquare;
 import com.labtk.biology.punnett.MonohybridPunnettSquare;
 
@@ -19,7 +20,7 @@ public class Main {
     public static void main(String[] args) {
         //labtk Header
         System.out.println("labtk - Lab-Based Science Toolkit");
-        //Args check
+        //Args Check
         if (args.length < 1) {
             System.out.println("Not long enough.");
         } else {

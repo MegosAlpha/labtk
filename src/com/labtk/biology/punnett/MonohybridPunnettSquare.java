@@ -26,6 +26,8 @@ public class MonohybridPunnettSquare {
         System.out.print("--------");
     }
     public void GetPunnettSquare() {
+        //Make sure the user knows what is running
+        System.out.println("Monohybrid Punnett Square Creator");
         //Get parental data
         System.out.print("Parent 1: ");
         String p1_string = scanner.next();

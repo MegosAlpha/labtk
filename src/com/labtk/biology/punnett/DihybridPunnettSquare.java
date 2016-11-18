@@ -57,6 +57,8 @@ public class DihybridPunnettSquare {
         System.out.print("-----------------------");
     }
     public void GetPunnettSquare() {
+        //Make sure the user knows what is running
+        System.out.println("Dihybrid Punnett Square Creator");
         try (Scanner scanner = new Scanner(System.in)) {
             //Get parental data
             System.out.print("Parent 1: ");
