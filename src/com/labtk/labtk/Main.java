@@ -18,6 +18,15 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
     static String[] cArgs;
     static int inputIter = 0;
+    /**
+     * Returns text from either command line flags
+     * or from the user through scanner. This form
+     * does not allow consumption of all characters
+     * at the end. This method makes it possible to
+     * automate testing of the labtk interface easily.
+     * 
+     * @return User Input from Scanner or Command-line Arguments
+     */
     static String getNextInput() {
         if (cArgs.length == 0) {
             return scanner.next();
@@ -38,7 +47,16 @@ public class Main {
             }   
         }
     }
-    //Pass multichar if you want to consume the rest of the input.
+    /**
+     * Form of getNextInput that will consume
+     * the remainder of the string. Best for passing
+     * multi-letter data in tests like DNA or RNA.
+     * Special note: the string can still be processed by
+     * getNextInput if multichar is true.
+     * 
+     * @param multichar Boolean that sets apart Consume All and Consume One. Set true for re-use, false for final.
+     * @return Remainder of the string
+     */
     static String getNextInput(Boolean multichar) {
         if (cArgs.length == 0) {
             return scanner.next();
@@ -50,7 +68,8 @@ public class Main {
             if (cArgs[0].length() - 2 > inputIter) {
                 //Make sure user can see flag input
                 System.out.println(cArgs[0].substring(inputIter+2));
-                //Nasty code processing unit
+                if (multichar)
+                    inputIter = cArgs[0].length();
                 return cArgs[0].substring(inputIter+2);
             } else {
                 return scanner.next();

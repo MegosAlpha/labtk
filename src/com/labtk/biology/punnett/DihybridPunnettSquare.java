@@ -12,6 +12,13 @@ import java.util.ArrayList;
  * @author noah
  */
 public class DihybridPunnettSquare {
+    /**
+     * Genetic Formatter to create the array used for genetic crosses
+     * 
+     * @param parentStr Genotype of parent that is not yet processed.
+     * @return Ready to use Character[][] for gamete calculation
+     * @see CalculateGametes
+     */
     public Character[][] GetProperGeneticFormat(String parentStr) {
         return new Character[][]{
             new Character[]{
@@ -22,6 +29,13 @@ public class DihybridPunnettSquare {
             }
         };
     }
+    /**
+     * Gamete Calculator for Dihybrid Punnett Squares. Could have done it with
+     * for loops, but didn't.
+     * 
+     * @param parent Proper format parental genotype.
+     * @return All possible parent gametes.
+     */
     public Character[][] CalculateGametes(Character[][] parent) {
         return new Character[][]{
             new Character[] {
@@ -38,13 +52,20 @@ public class DihybridPunnettSquare {
             }
         };
     }
-    public String CreateTableTop(Character[][] p2g) {
+    /**
+     * Punnett Square Tabletop Creator for Dihybrid
+     * Punnett Squares. Builds the fancy table header.
+     * 
+     * @param p1g Parent 1's gametes.
+     * @return Fancy table header.
+     */
+    public String CreateTableTop(Character[][] p1g) {
         //Set up StringBuilder
         StringBuilder sb = new StringBuilder();
         sb.append("  ");
         sb.append('|');
         //Start up tabletop creation
-        for (Character[] g : p2g) {
+        for (Character[] g : p1g) {
             sb.append(' ');
             sb.append(g[0]);
             sb.append(g[1]);
@@ -56,6 +77,14 @@ public class DihybridPunnettSquare {
         sb.append("-----------------------");
         return sb.toString();
     }
+    /**
+     * Dihybrid Punnett Square Calculator. Outputs fancy Dihybrid Punnett Square,
+     * determines gametes, performs genetic cross.
+     * 
+     * @param p1_string Parent 1's genotype.
+     * @param p2_string Parent 2's genotype.
+     * @return Fancy Punnett Square.
+     */
     public String GetPunnettSquare(String p1_string, String p2_string) {
         //Check parent's genotypes for proper length
         if (p1_string.length() != 4) {
@@ -77,10 +106,10 @@ public class DihybridPunnettSquare {
             for (Character[] p2ga: p2g) {
                 offspring.add(new Character[][]{
                     new Character[] {
-                        p1ga[0], p2ga[0]
+                        p2ga[0], p1ga[0]
                     },
                     new Character[] {
-                        p1ga[1], p2ga[1]
+                        p2ga[1], p1ga[1]
                     }
                 });
             }
@@ -88,16 +117,14 @@ public class DihybridPunnettSquare {
         //Make StringBuilder
         StringBuilder sb = new StringBuilder();
         //Make that tabletop!
-        sb.append(CreateTableTop(p2g));
+        sb.append(CreateTableTop(p1g));
         //Output Offspring (Row-by-Row). Now with row headers!
         int myIter = 0;
         for (Character[][] child : offspring) {
             if (myIter % 4 == 0) {
-                //System.out.println(sb.toString());
-                //sb = new StringBuilder();
                 sb.append('\n');
-                sb.append(p1g[myIter / 4][0]);
-                sb.append(p1g[myIter / 4][1]);
+                sb.append(p2g[myIter / 4][0]);
+                sb.append(p2g[myIter / 4][1]);
                 sb.append('|');
             }
             if (!Character.isUpperCase(child[0][0]) && Character.isUpperCase(child[0][1])) {

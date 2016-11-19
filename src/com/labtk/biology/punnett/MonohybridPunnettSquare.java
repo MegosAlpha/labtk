@@ -13,6 +13,12 @@ import org.apache.commons.lang3.ArrayUtils;
  * @author noah
  */
 public class MonohybridPunnettSquare {
+    /**
+     * Creates the top of the table for a Monohybrid Punnett Square.
+     * 
+     * @param p1g Parent 1's gametes to populate table top with.
+     * @return Tabletop in string form with newlines.
+     */
     public String CreateTableTop(Character[] p1g) {
         StringBuilder sb = new StringBuilder();
         sb.append(" |");
@@ -22,6 +28,14 @@ public class MonohybridPunnettSquare {
         sb.append(" |\n--------");
         return sb.toString();
     }
+    /**
+     * Monohybrid Punnett Square Builder. This takes the 2 parent strings,
+     * something similar to "Aa" and "aa". It performs the genetic cross, then
+     * builds the fancy table.
+     * @param p1_string First Parental Genotype
+     * @param p2_string Second Parental Genotyoe
+     * @return Fancy Monohybrid Punnett Square.
+     */
     public String GetPunnettSquare(String p1_string, String p2_string) {
         //Check parental data for violations
         if (p1_string.length() != 2) {
@@ -38,7 +52,7 @@ public class MonohybridPunnettSquare {
         //Perform genetic cross
         for (Character allele : p1) {
             for (Character allele2 : p2) {
-                Character[] geneArray = {allele, allele2};
+                Character[] geneArray = {allele2, allele};
                 offspring.add(geneArray);
             }
         }
@@ -46,13 +60,13 @@ public class MonohybridPunnettSquare {
         StringBuilder sb = new StringBuilder();
         int myIter = 0;
         //Build the tabletop
-        String tt = CreateTableTop(p2);
+        String tt = CreateTableTop(p1);
         sb.append(tt);
         //Output Offspring
         for (Character[] child : offspring) {
             if (myIter % 2 == 0) {
                 sb.append('\n');
-                sb.append(p1[myIter/2]);
+                sb.append(p2[myIter/2]);
                 sb.append('|');
             }
             if (!Character.isUpperCase(child[0]) && Character.isUpperCase(child[1])) {

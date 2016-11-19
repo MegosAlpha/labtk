@@ -11,9 +11,15 @@ import org.apache.commons.lang3.ArrayUtils;
  * @author noah
  */
 public class NucleicAcids {
-    //FindComplement classes find the Complement Strands of DNA. Default is to
-    //assume it's DNA (with only one parameter). With 2, you can specify true
-    //if it is DNA or false if it's RNA.
+    /**
+     * Find Complement (with boolean) allows you to decide if you would like
+     * DNA as a complement or RNA as a complement. This method finds the opposite
+     * side of a DNA or RNA sequence and outputs it as DNA or RNA.
+     * 
+     * @param myCode Genetic Code (all caps)
+     * @param isDNA True for DNA output, false for RNA output.
+     * @return Complement Strand of DNA
+     */
     public String FindComplement(String myCode, Boolean isDNA) {
         StringBuilder sb = new StringBuilder();
         for (Character l : ArrayUtils.toObject(myCode.toCharArray())) {
@@ -43,6 +49,13 @@ public class NucleicAcids {
         }
         return sb.toString();
     }
+    /**
+     * Find Complement (short form, no boolean). Generates opposite strand of DNA
+     * or RNA and outputs DNA only.
+     * 
+     * @param myCode Genetic Code to find complement of (All Caps).
+     * @return DNA complement of myCode.
+     */
     public String FindComplement(String myCode) {
         Boolean isDNA = true;
         StringBuilder sb = new StringBuilder();
