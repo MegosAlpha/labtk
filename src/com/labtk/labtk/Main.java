@@ -54,7 +54,7 @@ public class Main {
      * Special note: the string can still be processed by
      * getNextInput if multichar is true.
      * 
-     * @param multichar Boolean that sets apart Consume All and Consume One. Set true for re-use, false for final.
+     * @param multichar Boolean that sets apart Split by comma or Consume all. Set true for comma split, false for final on string.
      * @return Remainder of the string
      */
     static String getNextInput(Boolean multichar) {
@@ -66,11 +66,20 @@ public class Main {
             return "";
         } else {
             if (cArgs[0].length() - 2 > inputIter) {
-                //Make sure user can see flag input
-                System.out.println(cArgs[0].substring(inputIter+2));
-                if (multichar)
-                    inputIter = cArgs[0].length();
-                return cArgs[0].substring(inputIter+2);
+                if (multichar) {
+                    //Process until comma
+                    String[] preStr = cArgs[0].substring(inputIter+2).split(",");
+                    System.out.println(preStr[0]);
+                    //Swallow the comma!
+                    inputIter += preStr[0].length()+1;
+                    return preStr[0];
+                } else {
+                    //Consume all
+                    System.out.println(cArgs[0].substring(inputIter+2));
+                    if (multichar)
+                        inputIter += cArgs[0].length();
+                    return cArgs[0].substring(inputIter+2-cArgs[0].length());
+                }       
             } else {
                 return scanner.next();
             }   
