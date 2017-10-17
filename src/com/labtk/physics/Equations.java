@@ -25,13 +25,60 @@ package com.labtk.physics;
 
 /**
  *
- * @author noah, sonal
+ * @author noah
  */
 public class Equations {
     public static void GetForce(int mass, int accel) {
         System.out.println(mass*accel);
     }
-    public static void GetPressure(int force, int area){
-        System.out.println(force/area);
+    
+    //Equations for mechanics
+    
+    //straight movement
+    //non-accelerated movement
+    public double GetVelocity(double time, double distance){
+        return distance / time;
+    }
+    
+    public double GetDistance(double vel, double time){
+        return vel*time;
+    }
+    
+    public double GetTime(double vel, double distance){
+        return distance / vel;
+    }
+    
+    //accelerated movement
+    public double GetVelocityAccel(double time, double accel){
+        return time*accel;
+    }
+    
+    public double GetVelocityAccel(double time, double accel, double startVel){
+        return GetVelocityAccel(time, accel) + startVel;
+    }
+    
+    public double GetAccel(double time, double vel){
+        return vel / time;
+    } 
+    
+    public double GetAccel(double time, double vel, double startVel){
+        return GetAccel(time, vel-startVel);
+    }
+    
+    public double GetDistanceAccel(double accel, double time){
+        return accel*time*time/2;
+    }
+    
+    public double GetDistanceAccel(double accel, double time, double startVel){
+        return GetDistanceAccel(accel, time) + startVel*time;
+    }
+    
+    public double GetTimeAccel(double distance, double accel){
+        return Math.sqrt(2*distance/accel);
+    }
+    
+    //others
+    public double getEnergy(double mass, double vel){
+        return mass*vel*vel/2;
     }
 }
