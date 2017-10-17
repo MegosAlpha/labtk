@@ -21,17 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.labtk.physics;
+package com.labtk.chemistry;
 
 /**
  *
- * @author noah, sonal
+ * @author sonal
  */
-public class Equations {
-    public static void GetForce(int mass, int accel) {
-        System.out.println(mass*accel);
-    }
-    public static void GetPressure(int force, int area){
-        System.out.println(force/area);
+
+
+public class Chem_equations {
+    public static void GetMolarity(int moles, int volume){
+        float molarity = moles/volume;
+        System.out.println("Molarity: "+molarity);
     }
 }
