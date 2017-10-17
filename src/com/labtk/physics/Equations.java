@@ -28,7 +28,7 @@ package com.labtk.physics;
  * @author noah
  */
 public class Equations {
-    public void GetForce(int mass, int accel) {
+    public static void GetForce(int mass, int accel) {
         System.out.println(mass*accel);
     }
     
@@ -81,6 +81,4 @@ public class Equations {
     public double getEnergy(double mass, double vel){
         return mass*vel*vel/2;
     }
-    
- 
 }

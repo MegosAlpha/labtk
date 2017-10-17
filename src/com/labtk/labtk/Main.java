@@ -27,6 +27,8 @@ import com.labtk.biology.punnett.DihybridPunnettSquare;
 import com.labtk.biology.punnett.MonohybridPunnettSquare;
 import com.labtk.biology.geneticcode.NucleicAcids;
 import java.util.Scanner;
+import com.labtk.physics.Equations;
+import com.labtk.chemistry.Chem_equations;
 /**
  *
  * @author noah
@@ -157,6 +159,46 @@ public class Main {
                         String p2_string = getNextInput(true);
                         System.out.println(dps.GetPunnettSquare(p1_string, p2_string));
                     }
+                }
+                break;
+            case "C":
+                System.out.print("Chemistry");
+                System.out.print("Molarity or Molality? (M or N): ");
+                String chemResp = getNextInput();
+                if(chemResp.equals("M")) {
+                    System.out.println("No. of moles: ");
+                    String m = getNextInput(true);
+                    int moles = Integer.parseInt(m);
+                    System.out.println("Volume in litres: ");
+                    String v = getNextInput(true);
+                    int volume = Integer.parseInt(v);
+                    Chem_equations.GetMolarity(moles, volume);
+                }
+                if(chemResp.equals("N")) {
+                    System.out.println("Not yet built");
+                }
+                break;
+            case "H":
+                System.out.println("Physics");
+                System.out.print("Force or Pressure? (F or P): ");
+                String phyResp = getNextInput();
+                if(phyResp.equals("F")) {
+                    System.out.println("Mass: ");
+                    String m = getNextInput(true);
+                    int mass = Integer.parseInt(m);
+                    System.out.println("Acceleration: ");
+                    String a = getNextInput(true);
+                    int accel = Integer.parseInt(a);
+                    Equations.GetForce(mass, accel);
+                }
+                if(phyResp.equals("P")) {
+                    System.out.println("Force: ");
+                    String f = getNextInput(true);
+                    int force = Integer.parseInt(f);
+                    System.out.println("Area: ");
+                    String a = getNextInput(true);
+                    int area = Integer.parseInt(a);
+                    Equations.GetPressure(force, area);
                 }
                 break;
         }
