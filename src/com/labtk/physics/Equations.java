@@ -81,4 +81,7 @@ public class Equations {
     public double getEnergy(double mass, double vel){
         return mass*vel*vel/2;
     }
+    public static void GetPressure(int force, int area){
+        System.out.println(force/area);
+    }
 }
